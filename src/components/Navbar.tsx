@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bars3Icon, XMarkIcon, ShoppingBagIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline/index.js';
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline/index.js';
 
 const navigation = [
   { name: 'Home', href: '/' },
