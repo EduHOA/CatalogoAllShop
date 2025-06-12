@@ -1,4 +1,4 @@
-import { ShoppingBagIcon, DevicePhoneMobileIcon, ComputerDesktopIcon, HeartIcon } from '@heroicons/react/24/outline/index.js';
+import { DevicePhoneMobileIcon, ComputerDesktopIcon, HeartIcon } from '@heroicons/react/24/outline/index.js';
 
 const quickCategories = [
   {
