@@ -13,6 +13,10 @@ import {
   XMarkIcon,
   TagIcon,
 } from '@heroicons/react/24/outline';
+import { Link, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import AdminDashboardHome from '../Admin/Dashboard';
+import AdminProducts from '../Admin/Products';
+import AdminCategories from '../Admin/Categories';
 
 // Mock data for products
 const initialProducts = [
@@ -322,8 +326,11 @@ function CategoryRegistration({ onBack }: { onBack: () => void }) {
 }
 
 export default function AdminDashboard() {
-  const [activeScreen, setActiveScreen] = useState<'dashboard' | 'cadastro-produto' | 'cadastro-categoria'>('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  // Helper para saber qual rota está ativa
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div className="w-screen min-h-screen flex bg-gradient-to-br from-dark via-black to-primary/10 overflow-x-hidden">
@@ -334,9 +341,9 @@ export default function AdminDashboard() {
           <span className="text-xl font-zing font-bold text-primary">AllShop</span>
         </div>
         <nav className="flex-1 px-4 py-8 flex flex-col gap-2">
-          <button onClick={() => setActiveScreen('dashboard')} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${activeScreen === 'dashboard' ? '!bg-primary/10 !text-primary' : 'bg-transparent text-white hover:bg-primary/10'}`}> <HomeIcon className="h-5 w-5 text-primary" /> Dashboard </button>
-          <button onClick={() => setActiveScreen('cadastro-produto')} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${activeScreen === 'cadastro-produto' ? '!bg-primary/10 !text-primary' : 'bg-transparent text-white hover:bg-primary/10'}`}> <CubeIcon className="h-5 w-5 text-primary" /> Produtos </button>
-          <button onClick={() => setActiveScreen('cadastro-categoria')} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${activeScreen === 'cadastro-categoria' ? '!bg-primary/10 !text-primary' : 'bg-transparent text-white hover:bg-primary/10'}`}> <TagIcon className="h-5 w-5 text-primary" /> Categorias </button>
+          <Link to="/admin" className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${isActive('/admin') ? '!bg-primary/10 !text-primary' : 'bg-transparent text-white hover:bg-primary/10'}`}> <HomeIcon className="h-5 w-5 text-primary" /> Dashboard </Link>
+          <Link to="/admin/produtos" className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${isActive('/admin/produtos') ? '!bg-primary/10 !text-primary' : 'bg-transparent text-white hover:bg-primary/10'}`}> <CubeIcon className="h-5 w-5 text-primary" /> Produtos </Link>
+          <Link to="/admin/categorias" className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${isActive('/admin/categorias') ? '!bg-primary/10 !text-primary' : 'bg-transparent text-white hover:bg-primary/10'}`}> <TagIcon className="h-5 w-5 text-primary" /> Categorias </Link>
           <a href="#pedidos" className="flex items-center gap-3 px-4 py-3 rounded-lg text-white font-zing font-medium bg-transparent hover:bg-blue-500/10 transition-colors"> <ShoppingBagIcon className="h-5 w-5 text-blue-400" /> Pedidos </a>
           <a href="#usuarios" className="flex items-center gap-3 px-4 py-3 rounded-lg text-white font-zing font-medium bg-transparent hover:bg-green-500/10 transition-colors"> <UsersIcon className="h-5 w-5 text-green-400" /> Usuários </a>
           <a href="#estatisticas" className="flex items-center gap-3 px-4 py-3 rounded-lg text-white font-zing font-medium bg-transparent hover:bg-yellow-400/10 transition-colors"> <ChartBarIcon className="h-5 w-5 text-yellow-400" /> Estatísticas </a>
@@ -350,7 +357,6 @@ export default function AdminDashboard() {
           <button className="p-2 rounded-lg hover:bg-primary/10 transition-colors"> <ArrowRightOnRectangleIcon className="h-5 w-5 text-primary" /> </button>
         </div>
       </aside>
-
       {/* Sidebar Mobile Overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 bg-black/60 md:hidden" onClick={() => setSidebarOpen(false)} />
@@ -362,24 +368,11 @@ export default function AdminDashboard() {
           <button className="ml-auto text-primary" onClick={() => setSidebarOpen(false)}><XMarkIcon className="h-7 w-7" /></button>
         </div>
         <nav className="flex-1 px-4 py-8 flex flex-col gap-2">
-          <button onClick={() => { setActiveScreen('dashboard'); setSidebarOpen(false); }} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${activeScreen === 'dashboard' ? 'bg-primary/10 text-primary' : 'text-white hover:bg-primary/10'}`}> <HomeIcon className="h-5 w-5 text-primary" /> Dashboard </button>
-          <button onClick={() => { setActiveScreen('cadastro-produto'); setSidebarOpen(false); }} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${activeScreen === 'cadastro-produto' ? 'bg-primary/10 text-primary' : 'text-white hover:bg-primary/10'}`}> <CubeIcon className="h-5 w-5 text-primary" /> Produtos </button>
-          <button onClick={() => { setActiveScreen('cadastro-categoria'); setSidebarOpen(false); }} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${activeScreen === 'cadastro-categoria' ? 'bg-primary/10 text-primary' : 'text-white hover:bg-primary/10'}`}> <TagIcon className="h-5 w-5 text-primary" /> Categorias </button>
-          <a href="#pedidos" className="flex items-center gap-3 px-4 py-3 rounded-lg text-white font-zing font-medium bg-transparent hover:bg-blue-500/10 transition-colors"> <ShoppingBagIcon className="h-5 w-5 text-blue-400" /> Pedidos </a>
-          <a href="#usuarios" className="flex items-center gap-3 px-4 py-3 rounded-lg text-white font-zing font-medium bg-transparent hover:bg-green-500/10 transition-colors"> <UsersIcon className="h-5 w-5 text-green-400" /> Usuários </a>
-          <a href="#estatisticas" className="flex items-center gap-3 px-4 py-3 rounded-lg text-white font-zing font-medium bg-transparent hover:bg-yellow-400/10 transition-colors"> <ChartBarIcon className="h-5 w-5 text-yellow-400" /> Estatísticas </a>
+          <Link to="/admin" onClick={() => setSidebarOpen(false)} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${isActive('/admin') ? 'bg-primary/10 text-primary' : 'text-white hover:bg-primary/10'}`}> <HomeIcon className="h-5 w-5 text-primary" /> Dashboard </Link>
+          <Link to="/admin/produtos" onClick={() => setSidebarOpen(false)} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${isActive('/admin/produtos') ? 'bg-primary/10 text-primary' : 'text-white hover:bg-primary/10'}`}> <CubeIcon className="h-5 w-5 text-primary" /> Produtos </Link>
+          <Link to="/admin/categorias" onClick={() => setSidebarOpen(false)} className={`flex items-center gap-3 px-4 py-3 rounded-lg font-zing font-medium transition-colors ${isActive('/admin/categorias') ? 'bg-primary/10 text-primary' : 'text-white hover:bg-primary/10'}`}> <TagIcon className="h-5 w-5 text-primary" /> Categorias </Link>
         </nav>
-        <div className="px-4 py-6 border-t border-primary/10 flex items-center gap-3">
-          <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold font-zing">A</div>
-          <div className="flex-1">
-            <div className="text-sm text-white font-zing font-semibold">Administrador</div>
-            <div className="text-xs text-primary font-zing">admin@allshop.com</div>
-          </div>
-          <button className="p-2 rounded-lg hover:bg-primary/10 transition-colors"> <ArrowRightOnRectangleIcon className="h-5 w-5 text-primary" /> </button>
-        </div>
       </aside>
-
-      {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen w-full md:ml-64">
         {/* Header */}
         <header className="sticky top-0 z-10 w-full bg-black/70 shadow-sm border-b border-primary/20 backdrop-blur-md flex items-center justify-between px-4 sm:px-6 py-4">
@@ -391,13 +384,13 @@ export default function AdminDashboard() {
         {/* Main Area */}
         <main className="flex-1 flex flex-col w-full h-full min-h-0 overflow-y-auto overflow-x-hidden bg-black/30 p-0 sm:p-4">
           <div className="flex-1 flex flex-col w-full h-full">
-            {activeScreen === 'dashboard' && (
-              <div className="w-full h-full flex flex-col items-center justify-center">
-                <MockCharts />
-              </div>
-            )}
-            {activeScreen === 'cadastro-produto' && <ProductRegistration onBack={() => setActiveScreen('dashboard')} />}
-            {activeScreen === 'cadastro-categoria' && <CategoryRegistration onBack={() => setActiveScreen('dashboard')} />}
+            <Routes>
+              <Route index element={<AdminDashboardHome />} />
+              <Route path="produtos" element={<AdminProducts />} />
+              <Route path="categorias" element={<AdminCategories />} />
+              {/* Redireciona qualquer rota desconhecida para o dashboard */}
+              <Route path="*" element={<Navigate to="/admin" replace />} />
+            </Routes>
           </div>
         </main>
       </div>
