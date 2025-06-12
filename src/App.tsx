@@ -1,28 +1,30 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import FeaturedProducts from './components/FeaturedProducts'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import HomeScreen from './screens/Home';
+import ProductsScreen from './screens/Products';
+import CategoriesScreen from './screens/Categories';
+import AdminLogin from './screens/AdminLogin';
 
 function App() {
   return (
-    <div className="min-h-screen bg-dark">
-      <Navbar />
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <main>
-          <Hero />
-          <FeaturedProducts />
-        </main>
-        <footer className="bg-black mt-16 rounded-t-3xl">
-          <div className="py-12 px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <p className="text-base text-white">
-                &copy; 2024 AllShop. Todos os direitos reservados.
-              </p>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/loginadm" element={<AdminLogin />} />
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Routes>
+                <Route index element={<HomeScreen />} />
+                <Route path="produtos" element={<ProductsScreen />} />
+                <Route path="categorias" element={<CategoriesScreen />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
