@@ -29,7 +29,7 @@ export default function Navbar() {
             <div className="flex-shrink-0">
               <a href="/" className="flex items-center gap-2">
                 <img 
-                  src="./src/assets/logo.png" 
+                  src="https://i.postimg.cc/mDg0WCRq/Logo-Sem-Nome.png" 
                   alt="Logo All Shop" 
                   className="h-6 w-auto sm:h-7"
                 />

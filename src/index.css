@@ -33,6 +33,10 @@
   .btn-primary {
     @apply bg-primary text-dark hover:bg-white hover:text-primary focus:ring-primary;
   }
+
+  .glass-card {
+    @apply bg-black/60 backdrop-blur-md rounded-2xl border border-primary/20;
+  }
 }
 
 :root {
@@ -115,4 +119,16 @@ button:focus-visible {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #a0cc1f;
+}
+
+@keyframes border-glow {
+  0% { box-shadow: 0 0 0 0 #a0cc1f33; }
+  100% { box-shadow: 0 0 16px 4px #a0cc1f66; }
+}
+.animate-border-glow {
+  animation: border-glow 1.5s infinite alternate;
+}
+.glass-card:focus-visible {
+  outline: 2px solid #a0cc1f;
+  outline-offset: 2px;
 }

@@ -28,8 +28,8 @@ export default function Hero() {
         <div className="text-center max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center w-full">
             <img 
-              src="/src/assets/logoNome.png" 
-              alt="Logo All Shop" 
+              src="https://i.postimg.cc/9FbgCzgH/Logo-com-Nome.png" 
+              alt="Logo All Shop Centro" 
               className="h-56 sm:h-64 md:h-72 w-auto mx-auto mb-8" 
             />
           </div>
