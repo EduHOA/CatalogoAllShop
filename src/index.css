@@ -17,6 +17,7 @@
   
   body {
     @apply bg-dark text-white;
+    overflow-x: hidden;
   }
 }
 
@@ -101,4 +102,17 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Scrollbar customizada para o painel admin */
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #222e;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a0cc1f;
 }

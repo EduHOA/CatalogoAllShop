@@ -4,12 +4,14 @@ import HomeScreen from './screens/Home';
 import ProductsScreen from './screens/Products';
 import CategoriesScreen from './screens/Categories';
 import AdminLogin from './screens/AdminLogin';
+import AdminDashboard from './screens/AdminDashboard';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/loginadm" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route
           path="/"
           element={
